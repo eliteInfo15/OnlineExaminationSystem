@@ -1,7 +1,6 @@
 from django.db import models
 
 # Create your models here.
-
 class Admin(models.Model):
 	u_id=models.IntegerField()
 	username=models.CharField(max_length=255)
@@ -14,11 +13,11 @@ class Admin(models.Model):
 class Batch(models.Model):
 	b_id=models.IntegerField()
 	batch_name=models.CharField(max_length=255)
-	batch_time=models.Timefield()
+	batch_time=models.TimeField(auto_now=True)
 	batch_status=models.IntegerField()
 
 class Center(models.Model):
-	center_id=models.IntegerField()
+	c_id=models.IntegerField()
 	center_name=models.CharField(max_length=255)
 	center_address=models.CharField(max_length=300)
 	center_code=models.CharField(max_length=255)
@@ -105,7 +104,7 @@ class Student(models.Model):
 	center_id=models.ForeignKey(Center,on_delete=models.CASCADE,related_name="student3")
 	b_id=models.ForeignKey(Batch,on_delete=models.CASCADE,related_name="student4")
 	
-class Main_exam_status(models.Model):
+class Practice_exam_status(models.Model):
 	pid=models.IntegerField()
 	exam_date=models.DateField()
 	status=models.IntegerField()
@@ -181,17 +180,17 @@ class Noticestudent(models.Model):
     ns_id=models.IntegerField()
     student_id=models.ForeignKey(Student,on_delete=models.CASCADE,related_name="Noticestudent")
     notice_id=models.ForeignKey(Notice,on_delete=models.CASCADE,related_name="Notice1")
-    center_id=models.ForeignKey(Center,on_delete=models.CASCADE,related_name="Noticecenter1")
+    center_id=models.ForeignKey(Center,on_delete=models.CASCADE,related_name="Noticestudent1")
     notice_date=models.DateField()
     
 class Noticecenter(models.Model):
     nc_id=models.IntegerField() 
     center_id=models.ForeignKey(Center,on_delete=models.CASCADE,related_name="Noticecenter1") 
-    notice_id=models.ForeignKey(Notice,on_delete=models.CASCADE,related_name="Notice1") 
-    notice_date=models.models.DateField()
+    notice_id=models.ForeignKey(Notice,on_delete=models.CASCADE,related_name="Notice2") 
+    notice_date=models.DateField()
     
-class Practice_exam_status(models.Model):
-    id=models.IntegerField()
+class Main_exam_status(models.Model):
+    main_id=models.IntegerField()
     exam_id=models.ForeignKey(Exam,on_delete=models.CASCADE,related_name="practice_status")   
     status=models.IntegerField()
     starttime=models.CharField(max_length=255) 
@@ -199,8 +198,8 @@ class Practice_exam_status(models.Model):
     student_id=models.ForeignKey(Student,on_delete=models.CASCADE,related_name="studentid")
     noofattempts=models.IntegerField()
     pass_or_fail=models.CharField(max_length=255)
-    user_score=models.DecimalField()
-    passing_score=models.DecimalField()
-    total_score=models.DecimalField()
+    user_score=models.DecimalField(max_digits=10, decimal_places=3)
+    passing_score=models.DecimalField(max_digits=10, decimal_places=3)
+    total_score=models.DecimalField(max_digits=10, decimal_places=3)
     total_question=models.IntegerField()    
     negative_mark=models.IntegerField()
