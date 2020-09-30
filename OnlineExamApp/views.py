@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from.models import Admin,Batch,Center,Category
-from.serializers import Adminserializer,Batchserializer,Centerserializer,Categoryserializer
+from.models import Admin,Batch,Center,Category,Subcategory
+from.serializers import Adminserializer,Batchserializer,Centerserializer,Categoryserializer,Subcategoryserializer
     
 class Adminview(viewsets.ModelViewSet):
     queryset=Admin.objects.all()
@@ -44,4 +44,14 @@ class Batchtime(APIView):
     def get(self,request,batch_time):
         batch1=Batch.objects.get(batch_time=batch_time)
         serializer=Batchserializer(batch1)
-        return Response(serializer.data)       
+        return Response(serializer.data)  
+    
+class Subcategoryview(viewsets.ModelViewset):
+    queryset=Subcategory.objects.all()
+    serializer_class=Subcategoryserializer
+    
+class Subcategoryname(APIView):
+    def get(self,request,subcategory_name):
+        subcategory1=Subcategory.objects.get(subcategory_name=subcategory_name)
+        serializer=Subcategoryserializer(subcategory1)
+        return Response(serializer.data) 
