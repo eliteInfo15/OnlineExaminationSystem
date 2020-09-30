@@ -15,3 +15,13 @@ class Adminbyname(APIView):
         serializer=Admin
         return Response(serializer.data)
       
+class Categoryview(viewsets.ModelViewSet):
+    queryset=Category.objects.all()
+    serializer_class=Categoryserializer
+    
+class Categorybyname(APIView):
+    def get(self,request,name):
+        categories=Category.objects.get(category_name=name)
+        serializer=Categoryserializer(categories)
+        return Response(serializer.data)
+      
