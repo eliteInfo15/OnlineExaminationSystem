@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'OnlineExamApp',
     'rest_framework'
+
 ]
 
 MIDDLEWARE = [
@@ -76,12 +78,8 @@ WSGI_APPLICATION = 'OnlineExaminationSystem.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'onlinedb',
-        'USER':'root',
-        'PASSWORD':'root',
-        'HOST':'localhost',
-        'PORT':'3306',
+        'ENGINE': 'django.db.backends.sqlite',
+
     }
 }
 
