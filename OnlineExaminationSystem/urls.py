@@ -24,5 +24,6 @@ urlpatterns = [
     path('Adminbyname/<int:id>',views.Adminbyname.as_view()),
     path('center/<str:center_name>',views.Centername.as_view()),
     path('batch/<str:batch_time>',views.Batchtime.as_view()),
-    path('subcategory/<str:subcategory_name>',views.Subcategoryname.as_view())
+    path('subcategory/<str:subcategory_name>',views.Subcategoryname.as_view()),
+    path('category/<str:category_name>',views.Categorybyname.as_view())
 ]
