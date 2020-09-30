@@ -4,7 +4,6 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from.models import Admin
 from.serializers import Adminserializer
-
 class Adminview(viewsets.ModelViewSet):
     queryset=Admin.objects.all()
     serializer_class=Adminserializer
@@ -15,3 +14,4 @@ class Adminbyname(APIView):
         Admins=Admin.objects.get(username=name)
         serializer=Admin
         return Response(serializer.data)
+      
