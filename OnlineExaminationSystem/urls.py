@@ -21,5 +21,8 @@ from OnlineExamApp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('OnlineExamApp.urls')),
-    path('Adminbyname/<int:id>',views.Adminbyname.as_view())
+    path('Adminbyname/<int:id>',views.Adminbyname.as_view()),
+    path('center/<str:center_name>',views.Centername.as_view()),
+    path('batch/<str:batch_time>',views.Batchtime.as_view()),
+    path('subcategory/<str:subcategory_name>',views.Subcategoryname.as_view())
 ]
